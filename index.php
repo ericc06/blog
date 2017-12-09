@@ -1,5 +1,5 @@
 <?php
-require('../controler/frontend.php');
+require('controler/frontend.php');
 
 try {
     if (isset($_GET['action'])) {
@@ -35,3 +35,4 @@ try {
 catch(Exception $e) {
     echo 'Erreur : ' . $e->getMessage();
 }
+

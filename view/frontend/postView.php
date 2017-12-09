@@ -1,23 +1,13 @@
-<?php $title = htmlspecialchars($post['title']); ?>
+<?php
+require 'twigInit.php';
 
-<?php ob_start(); ?>
-<section id="single-post">
-    <div class="container">
-        <br>
-        <p><a href="index.php?action=listPosts">Retour à la liste des billets</a></p>
+ob_start();
 
-        <div class="news">
-            <h3>
-                <?= htmlspecialchars($post['title']) ?>
-                <em>le <?= $post['last_modif_date_fr'] ?></em>
-            </h3>
-            
-            <p>
-                <?= nl2br(htmlspecialchars($post['content'])) ?>
-            </p>
-        </div>
-    </div>
-</section>
-<?php $content = ob_get_clean(); ?>
+$template = $twig->loadTemplate('postView.twig');
+echo $template->render(array(
+    'post' => $post
+));
 
-<?php require('template.php'); ?>
+$content = ob_get_clean();
+
+require('template.php');

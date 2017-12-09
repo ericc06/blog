@@ -1,0 +1,28 @@
+    <!-- Last posts Section -->
+    <section class="bg-tertiary" id="last-posts">
+        <div class="container">
+            <h2 class="text-center text-uppercase text-secondary mb-0">Dernières publications</h2>
+            <hr class="star-dark pink-bg-star  mb-5">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                {% for key, post in posts %}
+                    <div class="news">
+                        <h3>
+                            {{ post.title }}
+                            <em class="post-date">le {{ post.last_modif_date_fr }} par {{ post.author_first_name }} {{ post.author_last_name }}</em>
+                        </h3>
+                        
+                        <p>
+                            {{ post.intro|nl2br }} <a href="index.php?action=post&id={{ post.id }}">(voir plus)</a>
+                            <br />
+                        </p>
+                    </div>
+                {% endfor %}
+                </div>
+            </div>
+            <br>
+            <h3 class="text-center">
+                <a href="index.php?action=listPosts" target="_blank">Voir tous les billets</a>
+            </h3>
+        </div>
+    </section>

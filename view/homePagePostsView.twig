@@ -1,0 +1,13 @@
+          {% for key, post in posts %}
+              <div class="news">
+                  <h3>
+                      {{ post.title }}
+                      <em class="post-date">le {{ post.last_modif_date_fr }}</em>
+                  </h3>
+                  
+                  <p>
+                      {{ post.intro }} <a href="index.php?action=post&id={{ post.iidntro }}">(voir plus)</a>
+                      <br />
+                  </p>
+              </div>
+          {% endfor %}

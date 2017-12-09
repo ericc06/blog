@@ -7,6 +7,21 @@
 }
 
 .bg-tertiary {
-    background-color: rgba(179, 5, 167, 0.356) !important;
+    background-color: #E4A5E0 !important;
 }
-  
+
+hr.star-dark.pink-bg-star:after {
+    color: #2c3e50;
+    background-color: #E4A5E0 !important;
+}
+
+.first-section {
+    padding-top: calc(6rem + 80px);
+    padding-bottom: 6rem;
+}
+
+.pagination {
+    justify-content: center;
+    margin-top: 35px;
+    margin-bottom: 0px;
+}

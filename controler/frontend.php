@@ -1,22 +1,30 @@
 <?php
 
 // Chargement des classes
-require_once('../model/PostManager.php');
+require_once('model/PostManager.php');
 
 function showHomePage()
 {
     $postManager = new \EricCodron\Blog\Model\PostManager();
-    $posts = $postManager->getPosts();
-
-    require('../view/frontend/homePageView.php');
+    $twoPosts = $postManager->getTwoPosts()->fetchAll();
+    
+    $homeMenuURL = '#page-top';
+    $blogMenuURL = '#last-posts';
+    $contactMenuURL = '#contact';
+    
+    require('view/frontend/homePageView.php');
 }
 
 function listPosts()
 {
     $postManager = new \EricCodron\Blog\Model\PostManager();
-    $posts = $postManager->getPosts();
+    $posts = $postManager->getPosts()->fetchAll();
 
-    require('../view/frontend/listPostsView.php');
+    $homeMenuURL = 'index.php';
+    $blogMenuURL = 'index.php?action=listPosts';
+    $contactMenuURL = 'index.php#contact';
+    
+    require('view/frontend/listPostsView.php');
 }
 
 function post()
@@ -24,7 +32,11 @@ function post()
     $postManager = new \EricCodron\Blog\Model\PostManager();
     $post = $postManager->getPost($_GET['id']);
 
-    require('../view/frontend/postView.php');
+    $homeMenuURL = 'index.php';
+    $blogMenuURL = 'index.php?action=listPosts';
+    $contactMenuURL = 'index.php#contact';
+    
+    require('view/frontend/postView.php');
 }
 
 function addComment($postId, $author, $comment)

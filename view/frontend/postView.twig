@@ -1,0 +1,18 @@
+<section class="first-section" id="single-post">
+    <div class="container">
+        <p><a href="index.php?action=listPosts">Retour à la liste des billets</a></p>
+
+        <div class="news">
+            <h3>
+                {{ post.title }}
+                <em class="post-date">le {{ post.last_modif_date_fr }} par {{ post.author_first_name }} {{ post.author_last_name }}</em>
+            </h3>
+            
+            <p>
+                <br>
+                {{ post.intro|nl2br }}
+                {{ post.content|nl2br }}
+            </p>
+        </div>
+    </div>
+</section>
