@@ -1,5 +1,5 @@
 <?php
-require('controler/frontend.php');
+require('controller/frontend.php');
 
 try {
     if (isset($_GET['action'])) {
