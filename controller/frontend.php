@@ -2,6 +2,7 @@
 
 // Chargement des classes
 require_once('model/PostManager.php');
+require_once('model/ContactFormManager.php');
 
 function showHomePage()
 {
@@ -41,7 +42,7 @@ function post()
 
 function addComment($postId, $author, $comment)
 {
-    $commentManager = new \EricCodron\Blog\Model\CommentManager();
+    $commentManager = new CommentManager();
 
     $affectedLines = $commentManager->postComment($postId, $author, $comment);
 
@@ -51,4 +52,16 @@ function addComment($postId, $author, $comment)
     else {
         header('Location: index.php?action=post&id=' . $postId);
     }
+}
+
+function processContactForm($firstname, $lastname, $email, $message)
+{
+    if (isset($email))
+    {
+        $from = $firstname . ' ' . $lastname . ' <' . $email . '>';
+        $emailSender = new \EricCodron\Blog\Model\ContactFormManager();
+        $emailSender->send("eric.codron@gmail.com", "Email from your website", $message, $from);
+    }
+
+    showHomePage();
 }

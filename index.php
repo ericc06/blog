@@ -1,5 +1,5 @@
 <?php
-require('controler/frontend.php');
+require('controller/frontend.php');
 
 try {
     if (isset($_GET['action'])) {
@@ -26,6 +26,15 @@ try {
             else {
                 throw new Exception('Aucun identifiant de billet envoyé');
             }
+        }
+    }
+    elseif (isset($_POST['contactFormSent'])) {
+        //echo "<br><br><br><br><br><br><br>post : "; var_dump($_POST);
+        if ($_POST['contactFormSent'] == "true") {
+            processContactForm($_POST['firstname'], $_POST['lastname'], $_POST['email'], $_POST['message']);
+        }
+        else {
+            throw new Exception('Something went wrong when submitting contact form.');
         }
     }
     else {
