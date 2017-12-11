@@ -32,3 +32,12 @@ hr.star-dark.pink-bg-star:after {
     margin-top: 35px;
     margin-bottom: 0px;
 }
+
+nav.admin-bg {
+    background-color: #ac3e30 !important;
+}
+
+.header-admin-label {
+    margin-top: 10px;
+    color: red !important;
+}

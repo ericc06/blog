@@ -1,0 +1,22 @@
+<section id="posts-list">
+    <div class="container">
+        <br>
+        <h4>
+            <p>Tous les billets du blog :</p>
+        </h4>
+
+    {% for key, post in posts %}
+        <div class="news">
+            <h3>
+                {{ post.title }}
+                <em class="post-date">le {{ post.last_modif_date_fr }} par {{ post.author_first_name }} {{ post.author_last_name }}</em>
+            </h3>
+            
+            <p>
+                {{ post.intro|nl2br }} <a href="index.php?action=postAdmin&id={{ post.id }}">(voir plus)</a> <a href="index.php?action=modPost&id={{ post.id }}">{modifier}</a> <a href="index.php?action=delPost&id={{ post.id }}">{supprimer}</a>
+                <br />
+            </p>
+        </div>
+    {% endfor %}
+    {{ pagination|raw }}
+</section>
