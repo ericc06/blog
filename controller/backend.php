@@ -6,6 +6,8 @@ require_once('model/PostManager.php');
 
 function listPostsAdmin()
 {
+    $_SESSION['admin'] = true;
+    
     $postManager = new \EricCodron\Blog\Model\PostManager();
     $posts = $postManager->getPosts()->fetchAll();
 
@@ -14,9 +16,34 @@ function listPostsAdmin()
     $contactMenuURL = 'index.php#contact';
     
     require('view/backend/listPostsAdminView.php');
+    //require('view/frontend/listPostsView.php');
 }
 
 function postAdmin()
+{
+    $postManager = new \EricCodron\Blog\Model\PostManager();
+    $post = $postManager->getPost($_GET['id']);
+
+    $homeMenuURL = 'index.php';
+    $blogMenuURL = 'index.php?action=listPosts';
+    $contactMenuURL = 'index.php#contact';
+    
+    require('view/backend/postAdminView.php');
+}
+
+function postModify()
+{
+    $postManager = new \EricCodron\Blog\Model\PostManager();
+    $post = $postManager->getPost($_GET['id']);
+
+    $homeMenuURL = 'index.php';
+    $blogMenuURL = 'index.php?action=listPosts';
+    $contactMenuURL = 'index.php#contact';
+    
+    require('view/backend/postModView.php');
+}
+
+function postDelete()
 {
     $postManager = new \EricCodron\Blog\Model\PostManager();
     $post = $postManager->getPost($_GET['id']);
