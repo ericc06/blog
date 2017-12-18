@@ -34,6 +34,9 @@ try {
         elseif ($_GET['action'] == 'postAdmin') {
             postAdmin();
         }
+        elseif ($_GET['action'] == 'modPost') {
+            postModify();
+        }
     }
     else {
         showHomePage();
