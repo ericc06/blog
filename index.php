@@ -28,14 +28,17 @@ try {
             }
         }
     }
-    elseif (isset($_POST['contactFormSent'])) {
+    elseif (isset($_POST['firstname'])) {
         //echo "<br><br><br><br><br><br><br>post : "; var_dump($_POST);
-        if ($_POST['contactFormSent'] == "true") {
-            processContactForm($_POST['firstname'], $_POST['lastname'], $_POST['email'], $_POST['message']);
-        }
+        processContactForm($_POST['firstname'], $_POST['lastname'], $_POST['email'], $_POST['message']);
+        unset($_POST['firstname']);
+        unset($_POST['lastname']);
+        unset($_POST['email']);
+        unset($_POST['message']);
+        /*}
         else {
             throw new Exception('Something went wrong when submitting contact form.');
-        }
+        }*/
     }
     else {
         showHomePage();

@@ -1,0 +1,49 @@
+#download-button {
+    margin-top: 2.5rem!important;
+}
+
+.post-date {
+    font-size: 1rem;
+}
+
+.bg-tertiary {
+    background-color: #E4A5E0 !important;
+}
+
+hr.star-dark.pink-bg-star:after {
+    color: #2c3e50;
+    background-color: #E4A5E0 !important;
+}
+
+.first-section {
+    padding-top: calc(6rem + 80px);
+    padding-bottom: 6rem;
+}
+
+.floating-label-form-group label {
+    line-height: 1 !important;
+}
+
+.form-group p {
+    margin-bottom: 0.5rem;
+}
+
+.pagination {
+    justify-content: center;
+    margin-top: 35px;
+    margin-bottom: 0px;
+}
+
+.admin-bg {
+    height: 200px;
+    background-color: #ac3e30 !important;
+}
+
+#mainNav {
+    background-color: #ac3e30 !important;
+}
+
+.header-admin-label {
+    margin-top: 10px;
+    color: red !important;
+}

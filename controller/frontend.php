@@ -54,6 +54,12 @@ function addComment($postId, $author, $comment)
     }
 }
 
+function controlContactForm($firstname, $lastname, $email, $message)
+{
+    //...
+    processContactForm($firstname, $lastname, $email, $message);
+}
+
 function processContactForm($firstname, $lastname, $email, $message)
 {
     if (isset($email))
