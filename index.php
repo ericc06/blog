@@ -20,7 +20,7 @@ try {
                 post();
             }
             else {
-                throw new Exception('Aucun identifiant de billet envoyé');
+                throw new Exception('Aucun identifiant de billet envoyé.');
             }
         }
         elseif ($_GET['action'] == 'addComment') {
@@ -33,7 +33,7 @@ try {
                 }
             }
             else {
-                throw new Exception('Aucun identifiant de billet envoyé');
+                throw new Exception('Aucun identifiant de billet envoyé.');
             }
         }
         elseif ($_GET['action'] == 'admin') {
@@ -42,23 +42,38 @@ try {
         elseif ($_GET['action'] == 'postAdmin') {
             postAdmin();
         }
+        elseif ($_GET['action'] == 'postAdd') {
+            postCreationForm();
+        }
         elseif ($_GET['action'] == 'postMod') {
             postModifyForm();
         }
         elseif ($_GET['action'] == 'postDel') {
-            postDelete();
+            deletePost($_GET['id']);
         }
         elseif ($_GET['action'] == 'front') {
             $_SESSION['admin'] = false;
             showHomePage();
         }
+        elseif ($_GET['action'] == 'saveNewPost') {
+            // TODO : vérifier le nombre de paramètre (explode)
+            $nb_param = count($_POST);
+            if($nb_param != 5) {
+                throw new Exception('Nombre de paramètres invalide.');
+            }
+            saveNewPost($_POST['title'], $_POST['author_first_name'], $_POST['author_last_name'], $_POST['intro'], $_POST['content']);
+        }
         elseif ($_GET['action'] == 'saveModifiedPost') {
             // TODO : vérifier le nombre de paramètre (explode)
+            $nb_param = count($_POST);
+            if($nb_param != 6) {
+                throw new Exception('Nombre de paramètres invalide.');
+            }
             if (isset($_POST['postId']) && $_POST['postId'] > 0) {
                 saveModifiedPost($_POST['postId'], $_POST['title'], $_POST['author_first_name'], $_POST['author_last_name'], $_POST['intro'], $_POST['content']);
             }
             else {
-                throw new Exception('Aucun identifiant de billet envoyé');
+                throw new Exception('Aucun identifiant de billet envoyé.');
             }
         }
         else {

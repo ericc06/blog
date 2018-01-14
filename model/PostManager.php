@@ -52,13 +52,18 @@ class PostManager extends Manager
         return $postsNumber;
     }
 
-    public function postPost($postId, $title, $author_first_name, $author_last_name, $intro, $content)
+    public function postNewPost($title, $author_first_name, $author_last_name, $intro, $content)
     {
         $db = $this->dbConnect();
-        $posts = $db->prepare('INSERT INTO posts(id, author_first_name, author_last_name, title, intro, content, last_update_date) VALUES(?, ?, ?, ?, ?, ?, NOW())');
-        $affectedLines = $posts->execute(array($postId, $title, $author_first_name, $author_last_name, html_entity_decode(strip_tags($intro)), html_entity_decode(strip_tags($content))));
+        $posts = $db->prepare('INSERT INTO posts (author_first_name, author_last_name, title, intro, content, last_update_date) VALUES (?, ?, ?, ?, ?, NOW())');
+        $affectedLines = $posts->execute(array($author_first_name, $author_last_name, $title, html_entity_decode($intro), html_entity_decode($content)));
 
-        return $affectedLines;
+        if($affectedLines === true) {
+            return $db->lastInsertId();
+        }
+        else {
+            return false;
+        }
     }
 
     public function postModifiedPost($postId, $title, $author_first_name, $author_last_name, $intro, $content)

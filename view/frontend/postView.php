@@ -18,12 +18,17 @@ else {
 
 ob_start();
 
-$template = $twig->loadTemplate('postView.twig');
-echo $template->render(array(
-    'post' => $post,
-    'admin_message' => $admin_message,
-    'admin_links' => $admin_links
-));
+if($post === false) {
+    $template = $twig->loadTemplate('postUnknownView.twig');
+}
+else {
+    $template = $twig->loadTemplate('postView.twig');
+    echo $template->render(array(
+        'post' => $post,
+        'admin_message' => $admin_message,
+        'admin_links' => $admin_links
+    ));
+}
 
 $content = ob_get_clean();
 

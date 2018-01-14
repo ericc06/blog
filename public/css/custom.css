@@ -46,7 +46,7 @@ hr.star-dark.pink-bg-star:after {
     color: red !important;
 }
 
-form#modifPost label {
+form#modifPost label, form#createPost label {
     top: 0 !important;
     opacity: 1 !important;
     font-size: 18px;
@@ -64,4 +64,8 @@ form#modifPost label {
 
 .admin-link {
     color: red;
+}
+
+.menu-link {
+    margin-right: 15px;
 }

@@ -32,6 +32,17 @@ function postAdmin()
     require('view/frontend/postView.php');
 }
 
+function postCreationForm()
+{
+    $postManager = new \EricCodron\Blog\Model\PostManager();
+
+    $homeMenuURL = 'index.php';
+    $blogMenuURL = 'index.php?action=listPosts';
+    $contactMenuURL = 'index.php#contact';
+    
+    require('view/backend/postCreateView.php');
+}
+
 function postModifyForm()
 {
     $postManager = new \EricCodron\Blog\Model\PostManager();
@@ -45,16 +56,19 @@ function postModifyForm()
     require('view/backend/postModView.php');
 }
 
-function postDelete()
+function saveNewPost($title, $author_first_name, $author_last_name, $intro, $content)
 {
     $postManager = new \EricCodron\Blog\Model\PostManager();
-    $post = $postManager->getPost($_GET['id']);
 
-    $homeMenuURL = 'index.php';
-    $blogMenuURL = 'index.php?action=listPosts';
-    $contactMenuURL = 'index.php#contact';
-    
-    require('view/backend/postAdminView.php');
+    $lastId = $postManager->postNewPost($title, $author_first_name, $author_last_name, $intro, $content);
+
+    if ($lastId === false) {
+        throw new Exception('Impossible de créer le billet !');
+    }
+    else {
+        $SESSION['create_OK'] = true;
+        header('Location: index.php?action=post&id=' . $lastId);
+    }    
 }
 
 function saveModifiedPost($postId, $title, $author_first_name, $author_last_name, $intro, $content)
