@@ -25,7 +25,7 @@
                         </ul>
                     </div>
                     <div class="col-md-4">
-                        <a href="index.php?action=admin">Accès administrateur</a>
+                        <a href="index.php?action=front">Retour au site public</a>
                     </div>
                 </div>
             </div>

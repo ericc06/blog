@@ -25,7 +25,11 @@
                         </ul>
                     </div>
                     <div class="col-md-4">
+                    <?php if(isset($_SESSION['admin']) && $_SESSION['admin'] == true) { ?>
+                        <a href="index.php?action=front">Retour au site public</a>
+                    <?php } else { ?>
                         <a href="index.php?action=admin">Accès administrateur</a>
+                    <?php } ?>
                     </div>
                 </div>
             </div>

@@ -15,8 +15,8 @@ function listPostsAdmin()
     $blogMenuURL = 'index.php?action=listPosts';
     $contactMenuURL = 'index.php#contact';
     
-    require('view/backend/listPostsAdminView.php');
-    //require('view/frontend/listPostsView.php');
+    //require('view/backend/listPostsAdminView.php');
+    require('view/frontend/listPostsView.php');
 }
 
 function postAdmin()
@@ -28,12 +28,14 @@ function postAdmin()
     $blogMenuURL = 'index.php?action=listPosts';
     $contactMenuURL = 'index.php#contact';
     
-    require('view/backend/postAdminView.php');
+    //require('view/backend/postAdminView.php');
+    require('view/frontend/postView.php');
 }
 
-function postModify()
+function postModifyForm()
 {
     $postManager = new \EricCodron\Blog\Model\PostManager();
+    // TODO : vérifier que le paramètre est bien présent, sinon page 404
     $post = $postManager->getPost($_GET['id']);
 
     $homeMenuURL = 'index.php';
@@ -55,6 +57,22 @@ function postDelete()
     require('view/backend/postAdminView.php');
 }
 
+function saveModifiedPost($postId, $title, $author_first_name, $author_last_name, $intro, $content)
+{
+    $postManager = new \EricCodron\Blog\Model\PostManager();
+
+    $affectedLines = $postManager->postModifiedPost($postId, $title, $author_first_name, $author_last_name, $intro, $content);
+
+    if ($affectedLines === false) {
+        throw new Exception('Impossible de modifier le billet !');
+    }
+    else {
+        $SESSION['modif_OK'] = true;
+        header('Location: index.php?action=post&id=' . $postId);
+    }    
+}
+
+/*
 function addComment($postId, $author, $comment)
 {
     $commentManager = new \EricCodron\Blog\Model\CommentManager();
@@ -68,3 +86,4 @@ function addComment($postId, $author, $comment)
         header('Location: index.php?action=post&id=' . $postId);
     }
 }
+*/

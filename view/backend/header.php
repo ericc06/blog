@@ -22,8 +22,8 @@
         <link href="vendor/magnific-popup/magnific-popup.css" rel="stylesheet" type="text/css">
 
         <!-- Custom styles for this template -->
-        <link href="public/css/freelancer.min.css" rel="stylesheet">
         <link href="public/css/custom.css" rel="stylesheet">
+        <link href="public/css/freelancer.min.css" rel="stylesheet">
     </head>
 
     <body id="page-top">
@@ -39,13 +39,7 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item mx-0 mx-lg-1">
-                            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="<?= $homeMenuURL ?>">Accueil</a>
-                        </li>
-                        <li class="nav-item mx-0 mx-lg-1">
-                            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="<?= $blogMenuURL ?>">Blog</a>
-                        </li>
-                        <li class="nav-item mx-0 mx-lg-1">
-                            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="<?= $contactMenuURL ?>">Contact</a>
+                            <a href="index.php?action=front">Retour au site public</a>
                         </li>
                     </ul>
                 </div>

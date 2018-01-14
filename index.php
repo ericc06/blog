@@ -2,10 +2,18 @@
 require('controller/frontend.php');
 require('controller/backend.php');
 
+session_start();
+$_SESSION['admin'] = ((isset($_SESSION['admin']) && $_SESSION['admin'] == true) ? true : false);
+
 try {
     if (isset($_GET['action'])) {
         if ($_GET['action'] == 'listPosts') {
-            listPosts();
+            if($_SESSION['admin'] === true) {
+                listPostsAdmin();
+            }
+            else {
+                listPosts();
+            }
         }
         elseif ($_GET['action'] == 'post') {
             if (isset($_GET['id']) && $_GET['id'] > 0) {
@@ -34,8 +42,27 @@ try {
         elseif ($_GET['action'] == 'postAdmin') {
             postAdmin();
         }
-        elseif ($_GET['action'] == 'modPost') {
-            postModify();
+        elseif ($_GET['action'] == 'postMod') {
+            postModifyForm();
+        }
+        elseif ($_GET['action'] == 'postDel') {
+            postDelete();
+        }
+        elseif ($_GET['action'] == 'front') {
+            $_SESSION['admin'] = false;
+            showHomePage();
+        }
+        elseif ($_GET['action'] == 'saveModifiedPost') {
+            // TODO : vérifier le nombre de paramètre (explode)
+            if (isset($_POST['postId']) && $_POST['postId'] > 0) {
+                saveModifiedPost($_POST['postId'], $_POST['title'], $_POST['author_first_name'], $_POST['author_last_name'], $_POST['intro'], $_POST['content']);
+            }
+            else {
+                throw new Exception('Aucun identifiant de billet envoyé');
+            }
+        }
+        else {
+            showError404();
         }
     }
     else {

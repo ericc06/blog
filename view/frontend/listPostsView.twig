@@ -13,8 +13,13 @@
             </h3>
             
             <p>
-                {{ post.intro|nl2br }} <a href="index.php?action=post&id={{ post.id }}">(voir plus)</a>
+                {{ post.intro|nl2br }}
                 <br />
+                <a href="index.php?action=postAdmin&id={{ post.id }}">(voir plus)</a>
+                {% if show_admin_links %}
+                <a href="index.php?action=postMod&id={{ post.id }}" class="admin-link">{modifier}</a> <a href="index.php?action=postDel&id={{ post.id }}" class="admin-link">{supprimer}</a>
+                {% endif %}
+
             </p>
         </div>
     {% endfor %}

@@ -26,6 +26,7 @@ hr.star-dark.pink-bg-star:after {
 
 .form-group p {
     margin-bottom: 0.5rem;
+}
 
 .pagination {
     justify-content: center;
@@ -33,11 +34,34 @@ hr.star-dark.pink-bg-star:after {
     margin-bottom: 0px;
 }
 
-nav.admin-bg {
+.post-intro {
+    font-style: italic;
+}
+.admin-bg {
     background-color: #ac3e30 !important;
 }
 
 .header-admin-label {
     margin-top: 10px;
     color: red !important;
+}
+
+form#modifPost label {
+    top: 0 !important;
+    opacity: 1 !important;
+    font-size: 18px;
+    margin: 10px 0 10px 0;
+}
+
+.floating-label-form-group input, .floating-label-form-group textarea {
+    border: 1px solid #ccc !important;
+}
+
+.page-link.active {
+    color: #000;
+    font-weight: bold;
+}
+
+.admin-link {
+    color: red;
 }

@@ -2,6 +2,7 @@
 
 // Chargement des classes
 require_once('model/PostManager.php');
+//require_once('model/ContactFormManager.php');
 
 function showHomePage()
 {
@@ -38,3 +39,39 @@ function post()
     
     require('view/frontend/postView.php');
 }
+
+/*
+function addComment($postId, $author, $comment)
+{
+    $commentManager = new CommentManager();
+
+    $affectedLines = $commentManager->postComment($postId, $author, $comment);
+
+    if ($affectedLines === false) {
+        throw new Exception('Impossible d\'ajouter le commentaire !');
+    }
+    else {
+        header('Location: index.php?action=post&id=' . $postId);
+    }
+}
+*/
+
+/*
+function controlContactForm($firstname, $lastname, $email, $message)
+{
+    //...
+    processContactForm($firstname, $lastname, $email, $message);
+}
+
+function processContactForm($firstname, $lastname, $email, $message)
+{
+    if (isset($email))
+    {
+        $from = $firstname . ' ' . $lastname . ' <' . $email . '>';
+        $emailSender = new \EricCodron\Blog\Model\ContactFormManager();
+        $emailSender->send("eric.codron@gmail.com", "Email from your website", $message, $from);
+        }
+
+    showHomePage();
+}
+*/

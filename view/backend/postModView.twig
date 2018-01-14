@@ -3,32 +3,49 @@
         <p><a href="index.php?action=listPosts">Retour à la liste des billets</a></p>
 
         <div class="news">
-            <form name="modifPost" id="modifPost">
+            <form name="modifPost" id="modifPost" action="index.php?action=saveModifiedPost" method="post">
+                <input type="hidden" id="postId" name="postId" value="{{ post.id }}" />
                 <div class="control-group">
                     <div class="form-group floating-label-form-group controls mb-0 pb-2">
                         <label>Titre</label>
-                        <input class="form-control" id="title" type="text" placeholder="Titre" value="{{ post.title }}" required />
+                        <input class="form-control" id="title" name="title" type="text" placeholder="Titre" value="{{ post.title }}" required />
+                        <p class="help-block text-danger"></p>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                        <label>Prénom de l'auteur</label>
+                        <input class="form-control" id="author_first_name" name="author_first_name" type="text" placeholder="Titre" value="{{ post.author_first_name }}" required />
+                        <p class="help-block text-danger"></p>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div class="form-group floating-label-form-group controls mb-0 pb-2">
+                        <label>Nom de l'auteur</label>
+                        <input class="form-control" id="author_last_name" name="author_last_name" type="text" placeholder="Titre" value="{{ post.author_last_name }}" required />
                         <p class="help-block text-danger"></p>
                     </div>
                 </div>
                 <div class="control-group">
                     <div class="form-group floating-label-form-group controls mb-0 pb-2">
                         <label>Intro</label>
-                        <textarea class="form-control" id="intro" rows="5" placeholder="Intro" required>{{ post.intro }}</textarea>
+                        <textarea class="form-control" id="intro" name="intro" rows="5" placeholder="Intro" required>{{ post.intro|raw }}</textarea>
                         <p class="help-block text-danger"></p>
                     </div>
                 </div>
                 <div class="control-group">
                     <div class="form-group floating-label-form-group controls mb-0 pb-2">
                         <label>Contenu</label>
-                        <textarea class="form-control" id="content" rows="5" placeholder="Contenu" required>{{ post.content }}</textarea>
+                        <textarea class="form-control" id="content" name="content" rows="5" placeholder="Contenu" required>{{ post.content|raw }}</textarea>
                         <p class="help-block text-danger"></p>
                     </div>
                 </div>
-                
+                <div>
+                    <input type="submit" />
+                </div>
             </form>
             
-                <em class="post-date">le {{ post.last_modif_date_fr }} par {{ post.author_first_name }} {{ post.author_last_name }}</em>
+            <em class="post-date">le {{ post.last_modif_date_fr }} par {{ post.author_first_name }} {{ post.author_last_name }}</em>
             
         </div>
     </div>
