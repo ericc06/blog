@@ -2,7 +2,7 @@
 require 'twigInit.php';
 
 if(isset($_SESSION['admin']) && $_SESSION['admin'] == true) {
-    $admin_links = '<a href="index.php?action=postMod&id=' . $post['id'] . '" class="admin-link">{modifier}</a> <a href="index.php?action=postDel&id=' . $post['id'] . '" class="admin-link">{supprimer}</a>';
+    $admin_links = '<a href="index.php?action=postMod&id=' . $post['id'] . '" class="admin-link">{modifier}</a> <a href="index.php?action=postDel&id=' . $post['id'] . '" class="admin-link" onclick="return confirm(\'Supprimer ce billet ?\');">{supprimer}</a>';
 }
 else {
     $admin_links = '';

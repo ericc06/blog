@@ -86,6 +86,21 @@ function saveModifiedPost($postId, $title, $author_first_name, $author_last_name
     }    
 }
 
+function deletePost($postId)
+{
+    $postManager = new \EricCodron\Blog\Model\PostManager();
+
+    $affectedLines = $postManager->postDeletedPost($postId);
+
+    if ($affectedLines === false) {
+        throw new Exception('Impossible de supprimer le billet !');
+    }
+    else {
+        $SESSION['delete_OK'] = true;
+        header('Location: index.php?action=listPosts');
+    }    
+}
+
 /*
 function addComment($postId, $author, $comment)
 {
