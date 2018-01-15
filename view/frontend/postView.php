@@ -20,6 +20,8 @@ ob_start();
 
 if($post === false) {
     $template = $twig->loadTemplate('postUnknownView.twig');
+    echo $template->render(array(
+    ));
 }
 else {
     $template = $twig->loadTemplate('postView.twig');

@@ -16,6 +16,17 @@ function showHomePage()
     require('view/frontend/homePageView.php');
 }
 
+function showError404()
+{
+    $postManager = new \EricCodron\Blog\Model\PostManager();
+    
+    $homeMenuURL = '#page-top';
+    $blogMenuURL = '#last-posts';
+    $contactMenuURL = '#contact';
+    
+    require('view/frontend/error404.php');
+}
+
 function listPosts()
 {
     $postManager = new \EricCodron\Blog\Model\PostManager();
