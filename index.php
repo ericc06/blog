@@ -64,7 +64,7 @@ try {
             saveNewPost($_POST['title'], $_POST['author_first_name'], $_POST['author_last_name'], $_POST['intro'], $_POST['content']);
         }
         elseif ($_GET['action'] == 'saveModifiedPost') {
-            // TODO : vérifier le nombre de paramètre (explode)
+            // TODO : vérifier le nombre de paramètre (explode de l'URL pour l'URL rewriting)
             $nb_param = count($_POST);
             if($nb_param != 6) {
                 throw new Exception('Nombre de paramètres invalide.');
