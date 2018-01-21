@@ -20,7 +20,7 @@
         "suggest": {
             "ext-mbstring": "For best performance"
         },
-        "time": "2017-10-11 12:05:26",
+        "time": "2017-10-11T12:05:26+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -84,7 +84,7 @@
             "symfony/debug": "~2.7",
             "symfony/phpunit-bridge": "~3.3@dev"
         },
-        "time": "2017-09-27 18:10:31",
+        "time": "2017-09-27T18:10:31+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
@@ -143,7 +143,7 @@
             "reference": "a2392f870b4c85bd536e5cc77f640e035ce657af",
             "shasum": ""
         },
-        "time": "2017-11-23 15:30:30",
+        "time": "2017-11-23T15:30:30+00:00",
         "type": "component",
         "extra": {
             "component": {
@@ -174,6 +174,55 @@
             "richtext",
             "tinymce",
             "wysiwyg"
+        ]
+    },
+    {
+        "name": "ezyang/htmlpurifier",
+        "version": "v4.9.3",
+        "version_normalized": "4.9.3.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/ezyang/htmlpurifier.git",
+            "reference": "95e1bae3182efc0f3422896a3236e991049dac69"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/ezyang/htmlpurifier/zipball/95e1bae3182efc0f3422896a3236e991049dac69",
+            "reference": "95e1bae3182efc0f3422896a3236e991049dac69",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.2"
+        },
+        "require-dev": {
+            "simpletest/simpletest": "^1.1"
+        },
+        "time": "2017-06-03T02:28:16+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "HTMLPurifier": "library/"
+            },
+            "files": [
+                "library/HTMLPurifier.composer.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "LGPL"
+        ],
+        "authors": [
+            {
+                "name": "Edward Z. Yang",
+                "email": "admin@htmlpurifier.org",
+                "homepage": "http://ezyang.com"
+            }
+        ],
+        "description": "Standards compliant HTML filter written in PHP",
+        "homepage": "http://htmlpurifier.org/",
+        "keywords": [
+            "html"
         ]
     }
 ]

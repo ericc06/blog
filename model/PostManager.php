@@ -1,8 +1,11 @@
 <?php
 
 namespace EricCodron\Blog\Model;
-
 require_once("model/Manager.php");
+
+require_once("vendor/ezyang/htmlpurifier/library/HTMLPurifier.auto.php");
+
+use HTMLPurifier;
 
 class PostManager extends Manager
 {
@@ -54,9 +57,12 @@ class PostManager extends Manager
 
     public function postNewPost($title, $author_first_name, $author_last_name, $intro, $content)
     {
+        // Initializing HTMLPurifier with default configuration
+        $purifier = new HTMLPurifier();
+
         $db = $this->dbConnect();
         $posts = $db->prepare('INSERT INTO posts (author_first_name, author_last_name, title, intro, content, last_update_date) VALUES (?, ?, ?, ?, ?, NOW())');
-        $affectedLines = $posts->execute(array($author_first_name, $author_last_name, $title, html_entity_decode($intro), html_entity_decode($content)));
+        $affectedLines = $posts->execute(array($purifier->purify($author_first_name), $purifier->purify($author_last_name), $purifier->purify($title), $purifier->purify($intro), $purifier->purify($content)));
 
         if($affectedLines === true) {
             return $db->lastInsertId();
@@ -68,9 +74,13 @@ class PostManager extends Manager
 
     public function postModifiedPost($postId, $title, $author_first_name, $author_last_name, $intro, $content)
     {
+        // Initializing HTMLPurifier with default configuration
+        $purifier = new HTMLPurifier();
+
         $db = $this->dbConnect();
         $posts = $db->prepare('UPDATE posts SET author_first_name = ?, author_last_name = ?, title = ?, intro = ?, content = ?, last_update_date = NOW() WHERE id = ?');
-        $affectedLines = $posts->execute(array($author_first_name, $author_last_name, $title, html_entity_decode($intro), html_entity_decode($content), $postId));
+        $affectedLines = $posts->execute(array($purifier->purify($author_first_name), $purifier->purify($author_last_name), $purifier->purify($title),
+            $purifier->purify($intro), $purifier->purify($content), $postId));
 
         return $affectedLines;
     }
