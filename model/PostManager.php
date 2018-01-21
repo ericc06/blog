@@ -12,7 +12,7 @@ class PostManager extends Manager
     public function getPosts()
     {
         $db = $this->dbConnect();
-        $req = $db->query('SELECT id, author_first_name, author_last_name, title, intro, content, DATE_FORMAT(last_update_date, \'%d/%m/%Y à %Hh%i\') AS last_modif_date_fr FROM posts ORDER BY last_update_date DESC LIMIT 0, 5');
+        $req = $db->query('SELECT id, author_first_name, author_last_name, title, intro, content, DATE_FORMAT(last_update_date, \'%d/%m/%Y à %Hh%i\') AS last_modif_date_fr FROM posts ORDER BY last_update_date DESC');
 
         return $req;
     }
@@ -21,6 +21,14 @@ class PostManager extends Manager
     {
         $db = $this->dbConnect();
         $req = $db->query('SELECT id, author_first_name, author_last_name, title, intro, content, DATE_FORMAT(last_update_date, \'%d/%m/%Y à %Hh%i\') AS last_modif_date_fr FROM posts ORDER BY last_update_date DESC LIMIT 0, 2');
+
+        return $req;
+    }
+
+    public function getFivePosts()
+    {
+        $db = $this->dbConnect();
+        $req = $db->query('SELECT id, author_first_name, author_last_name, title, intro, content, DATE_FORMAT(last_update_date, \'%d/%m/%Y à %Hh%i\') AS last_modif_date_fr FROM posts ORDER BY last_update_date DESC LIMIT 0, 5');
 
         return $req;
     }

@@ -7,7 +7,7 @@ ob_start();
 $postManager = new \EricCodron\Blog\Model\PostManager();
 $total = $postManager->getPostsNumber();
 
-$adjacents = 3;
+$adjacents = 0;//3;
 $targetpage = "index.php?action=listPosts"; //your file name
 $limit = 3; //how many items to show per page
 if (isset($_GET['page']))
