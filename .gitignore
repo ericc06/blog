@@ -1,6 +1,5 @@
 cgi-bin
 _index.html
-config.php
 index_escape.html
 mail/contact_me.php
 SAVE/
