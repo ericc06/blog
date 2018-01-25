@@ -85,6 +85,7 @@ try {
     }
 }
 catch(Exception $e) {
-    echo 'Erreur : ' . $e->getMessage();
+    showError('Erreur : ' . $e->getMessage());
+    //echo 'Erreur : ' . $e->getMessage();
 }
 

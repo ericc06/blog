@@ -27,6 +27,17 @@ function showError404()
     require('view/frontend/error404.php');
 }
 
+function showError($error_message)
+{
+    $postManager = new \EricCodron\Blog\Model\PostManager();
+    
+    $homeMenuURL = '#page-top';
+    $blogMenuURL = '#last-posts';
+    $contactMenuURL = '#contact';
+
+    require('view/frontend/error.php');
+}
+
 function listPosts()
 {
     $postManager = new \EricCodron\Blog\Model\PostManager();
