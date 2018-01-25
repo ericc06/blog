@@ -40,13 +40,14 @@
                     </div>
                 </div>
                 <div>
-                    <input type="submit" />
+                    <input type="button" value="valider" onclick="if(check_not_empty()) this.form.submit();">
                 </div>
             </form>
             
         </div>
     </div>
 </section>
+<script type="text/javascript" src="public/js/custom.js"></script>
 <script type="text/javascript" src="vendor/tinymce/tinymce/tinymce.min.js"></script>
 <script type="text/javascript">
     tinyMCE.init({
