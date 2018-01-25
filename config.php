@@ -1,6 +1,6 @@
 <?php
 
-$db_host = '';
-$db_name = '';
-$db_user = '';
+$db_host = 'localhost';
+$db_name = 'p5';
+$db_user = 'root';
 $db_pass = '';
