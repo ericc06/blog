@@ -1,37 +1,9 @@
 <?php
 
-// Chargement des classes
+// Classes loading
 require_once('model/PostManager.php');
 
-
-function listPostsAdmin()
-{
-    $_SESSION['admin'] = true;
-    
-    $postManager = new \EricCodron\Blog\Model\PostManager();
-    $posts = $postManager->getPosts()->fetchAll();
-
-    $homeMenuURL = 'index.php';
-    $blogMenuURL = 'index.php?action=listPosts';
-    $contactMenuURL = 'index.php#contact';
-    
-    //require('view/backend/listPostsAdminView.php');
-    require('view/frontend/listPostsView.php');
-}
-
-function postAdmin()
-{
-    $postManager = new \EricCodron\Blog\Model\PostManager();
-    $post = $postManager->getPost($_GET['id']);
-
-    $homeMenuURL = 'index.php';
-    $blogMenuURL = 'index.php?action=listPosts';
-    $contactMenuURL = 'index.php#contact';
-    
-    //require('view/backend/postAdminView.php');
-    require('view/frontend/postView.php');
-}
-
+// Display the blog post creation form
 function postCreationForm()
 {
     $postManager = new \EricCodron\Blog\Model\PostManager();
@@ -43,6 +15,7 @@ function postCreationForm()
     require('view/backend/postCreateView.php');
 }
 
+// Display the blog post modification form
 function postModifyForm()
 {
     $postManager = new \EricCodron\Blog\Model\PostManager();
@@ -56,6 +29,7 @@ function postModifyForm()
     require('view/backend/postModView.php');
 }
 
+// Save the newly created blog post into the database or display an error message
 function saveNewPost($title, $author_first_name, $author_last_name, $intro, $content)
 {
     $postManager = new \EricCodron\Blog\Model\PostManager();
@@ -71,6 +45,7 @@ function saveNewPost($title, $author_first_name, $author_last_name, $intro, $con
     }    
 }
 
+// Save the modified blog post into the database or display an error message
 function saveModifiedPost($postId, $title, $author_first_name, $author_last_name, $intro, $content)
 {
     $postManager = new \EricCodron\Blog\Model\PostManager();
@@ -86,6 +61,7 @@ function saveModifiedPost($postId, $title, $author_first_name, $author_last_name
     }    
 }
 
+// Delete a blog post from the database or display an error message
 function deletePost($postId)
 {
     $postManager = new \EricCodron\Blog\Model\PostManager();
@@ -100,19 +76,3 @@ function deletePost($postId)
         header('Location: index.php?action=listPosts');
     }    
 }
-
-/*
-function addComment($postId, $author, $comment)
-{
-    $commentManager = new \EricCodron\Blog\Model\CommentManager();
-
-    $affectedLines = $commentManager->postComment($postId, $author, $comment);
-
-    if ($affectedLines === false) {
-        throw new Exception('Impossible d\'ajouter le commentaire !');
-    }
-    else {
-        header('Location: index.php?action=post&id=' . $postId);
-    }
-}
-*/

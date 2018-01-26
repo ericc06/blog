@@ -1,9 +1,9 @@
 <?php
 
-// Chargement des classes
+// Classes loading
 require_once('model/PostManager.php');
-//require_once('model/ContactFormManager.php');
 
+// Display the home page
 function showHomePage()
 {
     $postManager = new \EricCodron\Blog\Model\PostManager();
@@ -16,6 +16,7 @@ function showHomePage()
     require('view/frontend/homePageView.php');
 }
 
+// Display the Error 404 page (page not found error)
 function showError404()
 {
     $postManager = new \EricCodron\Blog\Model\PostManager();
@@ -27,6 +28,7 @@ function showError404()
     require('view/frontend/error404.php');
 }
 
+// Display the generic error page
 function showError($error_message)
 {
     $postManager = new \EricCodron\Blog\Model\PostManager();
@@ -38,6 +40,7 @@ function showError($error_message)
     require('view/frontend/error.php');
 }
 
+// Display the blog posts list
 function listPosts()
 {
     $postManager = new \EricCodron\Blog\Model\PostManager();
@@ -50,6 +53,7 @@ function listPosts()
     require('view/frontend/listPostsView.php');
 }
 
+// Display a single blog post
 function post()
 {
     $postManager = new \EricCodron\Blog\Model\PostManager();
@@ -61,22 +65,6 @@ function post()
     
     require('view/frontend/postView.php');
 }
-
-/*
-function addComment($postId, $author, $comment)
-{
-    $commentManager = new CommentManager();
-
-    $affectedLines = $commentManager->postComment($postId, $author, $comment);
-
-    if ($affectedLines === false) {
-        throw new Exception('Impossible d\'ajouter le commentaire !');
-    }
-    else {
-        header('Location: index.php?action=post&id=' . $postId);
-    }
-}
-*/
 
 /*
 function controlContactForm($firstname, $lastname, $email, $message)

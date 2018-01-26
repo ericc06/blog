@@ -8,12 +8,7 @@ $_SESSION['admin'] = ((isset($_SESSION['admin']) && $_SESSION['admin'] == true) 
 try {
     if (isset($_GET['action'])) {
         if ($_GET['action'] == 'listPosts') {
-            if($_SESSION['admin'] === true) {
-                listPostsAdmin();
-            }
-            else {
-                listPosts();
-            }
+            listPosts();
         }
         elseif ($_GET['action'] == 'post') {
             if (isset($_GET['id']) && $_GET['id'] > 0) {
@@ -37,10 +32,12 @@ try {
             }
         }
         elseif ($_GET['action'] == 'admin') {
-            listPostsAdmin();
+            $_SESSION['admin'] = true;
+            listPosts();
         }
         elseif ($_GET['action'] == 'postAdmin') {
-            postAdmin();
+            $_SESSION['admin'] = true;
+            post();
         }
         elseif ($_GET['action'] == 'postAdd') {
             postCreationForm();

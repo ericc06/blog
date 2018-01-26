@@ -1,3 +1,4 @@
+// Check if form fields are not empty
 function check_not_empty() {
     var empty = false;
     $('input,textarea').filter('[required]').each(function(i, requiredField){
@@ -10,7 +11,6 @@ function check_not_empty() {
     if (empty == false) {
         var intro = tinyMCE.get('intro').getContent({ format: 'text' }).trim();
         var content = tinyMCE.get('content').getContent({ format: 'text' }).trim();
-        alert("*" + content + "*");
         if (intro == null || intro == "" || content == null || content == "") {
             empty = true;
         }

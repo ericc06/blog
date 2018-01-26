@@ -9,6 +9,7 @@ use HTMLPurifier;
 
 class PostManager extends Manager
 {
+    // Return all blog posts from the database, from most recent to less recent
     public function getPosts()
     {
         $db = $this->dbConnect();
@@ -17,6 +18,7 @@ class PostManager extends Manager
         return $req;
     }
 
+    // Return the last 2 blog posts from the database, from most recent to less recent
     public function getTwoPosts()
     {
         $db = $this->dbConnect();
@@ -25,6 +27,7 @@ class PostManager extends Manager
         return $req;
     }
 
+    // Return the last 5 blog posts from the database, from most recent to less recent
     public function getFivePosts()
     {
         $db = $this->dbConnect();
@@ -33,6 +36,7 @@ class PostManager extends Manager
         return $req;
     }
 
+    // Return a certain number (given by $limit) of blog posts from the database, starting from $start, from most recent to less recent
     public function getPostsRange($start, $limit)
     {
         $db = $this->dbConnect();
@@ -45,6 +49,7 @@ class PostManager extends Manager
         return $postsRange;
     }
 
+    // Return a single blog post given by its id
     public function getPost($postId)
     {
         $db = $this->dbConnect();
@@ -55,6 +60,7 @@ class PostManager extends Manager
         return $post;
     }
 
+    // Return the total number of blog posts
     public function getPostsNumber()
     {
         $posts = $this->getPosts();
@@ -63,6 +69,7 @@ class PostManager extends Manager
         return $postsNumber;
     }
 
+    // Insert a new blog post into the database
     public function postNewPost($title, $author_first_name, $author_last_name, $intro, $content)
     {
         // Initializing HTMLPurifier with default configuration
@@ -80,6 +87,7 @@ class PostManager extends Manager
         }
     }
 
+    // Update a modified blog post into the database
     public function postModifiedPost($postId, $title, $author_first_name, $author_last_name, $intro, $content)
     {
         // Initializing HTMLPurifier with default configuration
@@ -93,6 +101,7 @@ class PostManager extends Manager
         return $affectedLines;
     }
 
+    // Delete a blog post from the database
     public function postDeletedPost($postId)
     {
         $db = $this->dbConnect();
