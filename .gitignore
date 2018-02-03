@@ -1,7 +1,5 @@
-cgi-bin
-_index.html
+.vscode
 posts.qsl
-index_escape.html
-mail/contact_me.php
+mail/
 SAVE/
 THEME_ORIG/
