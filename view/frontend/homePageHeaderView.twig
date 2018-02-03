@@ -1,7 +1,16 @@
     <!-- Header -->
     <header class="masthead bg-primary text-white text-center">
+        {% if message_status == 'mail_OK' %}
+        <div class="container message-status">
+            <h3 class="green-text">Votre message a bien été envoyé. Merci.</h3>
+        </div>
+        {% elseif message_status == 'mail_KO' %}
         <div class="container">
-            <img class="img-fluid mb-5 d-block mx-auto" src="public/img/profile.png" alt="">
+            <h3 class="red-text">L'envoi de votre message a échoué. Merci d'essayer de nouveau.</h3>
+        </div>
+        {% endif %}
+        <div class="container">
+                <img class="img-fluid mb-5 d-block mx-auto" src="public/img/profile.png" alt="">
             <h1 class="text-uppercase mb-0">Eric Codron</h1>
             <hr class="star-light">
             <h2 class="font-weight-light mb-0">Développeur Web, entrepreneur et rêveur à temps plein...</h2>

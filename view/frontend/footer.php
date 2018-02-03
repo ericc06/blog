@@ -58,7 +58,7 @@
 
         <!-- Contact Form JavaScript -->
         <script src="public/js/jqBootstrapValidation.js"></script>
-        <script src="public/js/contact_me.js"></script>
+        <!-- <script src="public/js/contact_me.js"></script> -->
 
         <!-- Custom scripts for this template -->
         <script src="public/js/freelancer.min.js"></script>

@@ -2,9 +2,10 @@
 
 // Classes loading
 require_once('model/PostManager.php');
+require_once('model/ContactFormManager.php');
 
 // Display the home page
-function showHomePage()
+function showHomePage($message_status = '')
 {
     $postManager = new \EricCodron\Blog\Model\PostManager();
     $twoPosts = $postManager->getTwoPosts()->fetchAll();
@@ -12,6 +13,7 @@ function showHomePage()
     $homeMenuURL = '#page-top';
     $blogMenuURL = '#last-posts';
     $contactMenuURL = '#contact';
+    $message_status = $message_status;
     
     require('view/frontend/homePageView.php');
 }
@@ -66,22 +68,20 @@ function post()
     require('view/frontend/postView.php');
 }
 
-/*
-function controlContactForm($firstname, $lastname, $email, $message)
+function sendContactForm($firstname, $lastname, $email, $message)
 {
-    //...
-    processContactForm($firstname, $lastname, $email, $message);
-}
+    $result = false;
 
-function processContactForm($firstname, $lastname, $email, $message)
-{
     if (isset($email))
     {
-        $from = $firstname . ' ' . $lastname . ' <' . $email . '>';
         $emailSender = new \EricCodron\Blog\Model\ContactFormManager();
-        $emailSender->send("eric.codron@gmail.com", "Email from your website", $message, $from);
-        }
-
-    showHomePage();
+        $result = $emailSender->controlContactForm($firstname, $lastname, $email, $message);
+    }
+    
+    if($result === true) {
+        showHomePage('mail_OK');
+    }
+    else {
+        showHomePage('mail_KO');
+    }
 }
-*/

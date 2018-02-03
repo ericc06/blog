@@ -34,50 +34,16 @@ hr.star-dark.pink-bg-star:after {
     margin-bottom: 0px;
 }
 
-.red-text {
-    color: red;
-}
-
-.green-text {
-    color: darkgreen;
-}
-
-.message-status {
-    margin-top: -50px;
-    margin-bottom: 35px;
-
-.post-intro {
-    font-style: italic;
-}
 .admin-bg {
+    height: 200px;
+    background-color: #ac3e30 !important;
+}
+
+#mainNav {
     background-color: #ac3e30 !important;
 }
 
 .header-admin-label {
     margin-top: 10px;
     color: red !important;
-}
-
-form#modifPost label, form#createPost label {
-    top: 0 !important;
-    opacity: 1 !important;
-    font-size: 18px;
-    margin: 10px 0 10px 0;
-}
-
-.floating-label-form-group input, .floating-label-form-group textarea {
-    border: 1px solid #ccc !important;
-}
-
-.page-link.active {
-    color: #000;
-    font-weight: bold;
-}
-
-.admin-link {
-    color: red;
-}
-
-.menu-link {
-    margin-right: 15px;
 }
