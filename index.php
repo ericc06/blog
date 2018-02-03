@@ -2,10 +2,10 @@
 require('controller/frontend.php');
 require('controller/backend.php');
 
-session_start();
+include('avoidContactFormRepost.php');
+
 $_SESSION['admin'] = ((isset($_SESSION['admin']) && $_SESSION['admin'] == true) ? true : false);
 
-include('avoidContactFormRepost.php');
 
 // Note: Here we use a custom $_MY_POST variable instead of $_POST
 // to prevent contact form multiple submission when refreshing the page
