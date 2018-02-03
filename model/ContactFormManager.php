@@ -2,9 +2,15 @@
 
 namespace EricCodron\Blog\Model;
 
+require_once("vendor/ezyang/htmlpurifier/library/HTMLPurifier.auto.php");
+
+use HTMLPurifier;
+
 class ContactFormManager
 {
 
+    // Controls that the contact form fields are not empty and that the email address
+    // is well formed, and sends the email if OK. Else, returns false.
     public function controlContactForm($firstname, $lastname, $email, $message)
     {
         if(empty($firstname) ||
@@ -13,14 +19,16 @@ class ContactFormManager
         empty($message) ||
         !filter_var($email,FILTER_VALIDATE_EMAIL))
         {
-         //echo "Il y a un problème avec les informations saisis.";
          return false;
         }
         
-        $firstname = strip_tags(htmlspecialchars($firstname));
-        $lastname = strip_tags(htmlspecialchars($lastname));
-        $email = strip_tags(htmlspecialchars($email));
-        $message = strip_tags(htmlspecialchars($message));
+        // Initializing HTMLPurifier with default configuration
+        $purifier = new HTMLPurifier();
+
+        $firstname = $purifier->purify($firstname);
+        $lastname = $purifier->purify($lastname);
+        $email = $purifier->purify($email);
+        $message = $purifier->purify($message);
 
         return self::send($firstname, $lastname, $email, $message);
     }

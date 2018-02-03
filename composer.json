@@ -1,6 +1,7 @@
 {
     "require": {
         "twig/twig": "^2.0",
-        "tinymce/tinymce": ">= 4"
+        "tinymce/tinymce": ">= 4",
+        "ezyang/htmlpurifier": "^4.9"
     }
 }
