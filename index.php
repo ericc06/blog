@@ -75,7 +75,7 @@ try {
             if($nb_param != 6) {
                 throw new Exception('Nombre de paramètres invalide.');
             }
-            if (isset($_POST['postId']) && $_POST['postId'] > 0) {
+            if (isset($_MY_POST['postId']) && $_MY_POST['postId'] > 0) {
                 saveModifiedPost($_MY_POST['postId'], $_MY_POST['title'], $_MY_POST['author_first_name'], $_MY_POST['author_last_name'], $_MY_POST['intro'], $_MY_POST['content']);
             }
             else {
