@@ -37,7 +37,7 @@
 
         <div class="copyright py-4 text-center text-white">
             <div class="container">
-                <small>Copyright &copy; Eric Codron 2017</small>
+                <small>Copyright &copy; Eric Codron 2018</small>
             </div>
         </div>
 
