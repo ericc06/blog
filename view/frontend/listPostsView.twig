@@ -16,10 +16,12 @@
             <p>
                 {{ post.intro|raw }}
                 <br />
-                <a href="index.php?action=postAdmin&id={{ post.id }}">(voir plus)</a>
                 {% if show_admin_links %}
+                <a href="index.php?action=postAdmin&id={{ post.id }}">(voir plus)</a>
                 <a href="index.php?action=postMod&id={{ post.id }}" class="admin-link">{modifier}</a> <a href="index.php?action=postDel&id={{ post.id }}" class="admin-link" 
                 onclick="return confirm('Supprimer ce billet ?');">{supprimer}</a>
+                {% else %}
+                <a href="index.php?action=post&id={{ post.id }}">(voir plus)</a>
                 {% endif %}
                 <hr/>
 
