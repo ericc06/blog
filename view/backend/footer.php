@@ -25,11 +25,7 @@
                         </ul>
                     </div>
                     <div class="col-md-4">
-                    <?php if(isset($_SESSION['admin']) && $_SESSION['admin'] == true) { ?>
                         <a href="index.php?action=front">Retour au site public</a>
-                    <?php } else { ?>
-                        <a href="index.php?action=admin">Accès administrateur</a>
-                    <?php } ?>
                     </div>
                 </div>
             </div>
@@ -58,7 +54,7 @@
 
         <!-- Contact Form JavaScript -->
         <script src="public/js/jqBootstrapValidation.js"></script>
-        <!-- <script src="public/js/contact_me.js"></script> -->
+        <script src="public/js/contact_me.js"></script>
 
         <!-- Custom scripts for this template -->
         <script src="public/js/freelancer.min.js"></script>

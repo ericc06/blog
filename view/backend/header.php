@@ -29,32 +29,18 @@
     <body id="page-top">
 
         <!-- Navigation -->
-        <nav class="navbar navbar-expand-lg bg-secondary fixed-top text-uppercase" id="mainNav">
+        <nav class="navbar navbar-expand-lg bg-secondary fixed-top text-uppercase admin-bg" id="mainNav">
             <div class="container">
-                <a class="navbar-brand js-scroll-trigger" href="index.php">Eric Codron - Le blog
-                <?php if(isset($_SESSION['admin']) && $_SESSION['admin'] == true) { ?>
-                    <span class="header-admin-label"> - ADMIN</span>
-                <?php } ?>
-                </a>
+                <a class="navbar-brand js-scroll-trigger" href="index.php">Eric Codron - Le blog</a><h2 class="header-admin-label"> - ADMIN</h2>
                 <button class="navbar-toggler navbar-toggler-right text-uppercase bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
                     <i class="fa fa-bars"></i>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ml-auto">
-                <?php if(isset($_SESSION['admin']) && $_SESSION['admin'] == true) { ?>
-                    <a href="index.php?action=postAdd" class="admin-link menu-link">Créer un billet</a><a href="index.php?action=front">Retour au site public</a>
-                <?php } else { ?>
-                    <li class="nav-item mx-0 mx-lg-1">
-                        <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="<?= $homeMenuURL ?>">Accueil</a>
-                    </li>
-                    <li class="nav-item mx-0 mx-lg-1">
-                        <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="<?= $blogMenuURL ?>">Blog</a>
-                    </li>
-                    <li class="nav-item mx-0 mx-lg-1">
-                        <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="<?= $contactMenuURL ?>">Contact</a>
-                    </li>
-                <?php } ?>
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item mx-0 mx-lg-1">
+                            <a href="index.php?action=postAdd" class="admin-link menu-link">Créer un billet</a><a href="index.php?action=front">Retour au site public</a>
+                        </li>
                     </ul>
                 </div>
             </div>
