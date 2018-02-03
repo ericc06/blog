@@ -25,3 +25,16 @@ hr.star-dark.pink-bg-star:after {
     margin-top: 35px;
     margin-bottom: 0px;
 }
+
+.red-text {
+    color: red;
+}
+
+.green-text {
+    color: darkgreen;
+}
+
+.message-status {
+    margin-top: -50px;
+    margin-bottom: 35px;
+}

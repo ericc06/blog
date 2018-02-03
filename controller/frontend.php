@@ -4,7 +4,7 @@
 require_once('model/PostManager.php');
 require_once('model/ContactFormManager.php');
 
-function showHomePage()
+function showHomePage($message_status = '')
 {
     $postManager = new \EricCodron\Blog\Model\PostManager();
     $twoPosts = $postManager->getTwoPosts()->fetchAll();
@@ -12,6 +12,7 @@ function showHomePage()
     $homeMenuURL = '#page-top';
     $blogMenuURL = '#last-posts';
     $contactMenuURL = '#contact';
+    $message_status = $message_status;
     
     require('view/frontend/homePageView.php');
 }
@@ -40,20 +41,24 @@ function post()
     require('view/frontend/postView.php');
 }
 
-function addComment($postId, $author, $comment)
+function sendContactForm($firstname, $lastname, $email, $message)
 {
-    $commentManager = new CommentManager();
+    $result = false;
 
-    $affectedLines = $commentManager->postComment($postId, $author, $comment);
-
-    if ($affectedLines === false) {
-        throw new Exception('Impossible d\'ajouter le commentaire !');
+    if (isset($email))
+    {
+        $emailSender = new \EricCodron\Blog\Model\ContactFormManager();
+        $result = $emailSender->controlContactForm($firstname, $lastname, $email, $message);
+    }
+    
+    if($result === true) {
+        showHomePage('mail_OK');
     }
     else {
-        header('Location: index.php?action=post&id=' . $postId);
+        showHomePage('mail_KO');
     }
 }
-
+        /*
 function controlContactForm($firstname, $lastname, $email, $message)
 {
     //...
@@ -66,8 +71,14 @@ function processContactForm($firstname, $lastname, $email, $message)
     {
         $from = $firstname . ' ' . $lastname . ' <' . $email . '>';
         $emailSender = new \EricCodron\Blog\Model\ContactFormManager();
-        $emailSender->send("eric.codron@gmail.com", "Email from your website", $message, $from);
+        $result = $emailSender->send("eric.codron@gmail.com", "E-mail depuis le formulaire de contact", $message, $from);
     }
-
-    showHomePage();
+    
+    if($result === true) {
+        showHomePage('mail_OK');
+    }
+    else {
+        showHomePage('mail_KO');
+    }
 }
+*/

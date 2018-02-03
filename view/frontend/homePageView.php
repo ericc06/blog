@@ -5,6 +5,7 @@ ob_start();
 
 $template = $twig->loadTemplate('homePageHeaderView.twig');
 echo $template->render(array(
+    'message_status' => $message_status
 ));
 
 $template = $twig->loadTemplate('homePagePostsView.twig');
