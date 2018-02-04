@@ -13,7 +13,7 @@ class PostManager extends Manager
     public function getPosts()
     {
         $db = $this->dbConnect();
-        $req = $db->query('SELECT id, author_first_name, author_last_name, title, intro, content, DATE_FORMAT(last_update_date, \'%d/%m/%Y à %Hh%i\') AS last_modif_date_fr FROM posts ORDER BY last_update_date DESC');
+        $req = $db->query('SELECT id, author_first_name, author_last_name, title, intro, content, DATE_FORMAT(last_update_date, \'%d/%m/%Y à %Hh%i\') AS last_modif_date_fr FROM post ORDER BY last_update_date DESC');
 
         return $req;
     }
@@ -22,7 +22,7 @@ class PostManager extends Manager
     public function getTwoPosts()
     {
         $db = $this->dbConnect();
-        $req = $db->query('SELECT id, author_first_name, author_last_name, title, intro, content, DATE_FORMAT(last_update_date, \'%d/%m/%Y à %Hh%i\') AS last_modif_date_fr FROM posts ORDER BY last_update_date DESC LIMIT 0, 2');
+        $req = $db->query('SELECT id, author_first_name, author_last_name, title, intro, content, DATE_FORMAT(last_update_date, \'%d/%m/%Y à %Hh%i\') AS last_modif_date_fr FROM post ORDER BY last_update_date DESC LIMIT 0, 2');
 
         return $req;
     }
@@ -31,7 +31,7 @@ class PostManager extends Manager
     public function getFivePosts()
     {
         $db = $this->dbConnect();
-        $req = $db->query('SELECT id, author_first_name, author_last_name, title, intro, content, DATE_FORMAT(last_update_date, \'%d/%m/%Y à %Hh%i\') AS last_modif_date_fr FROM posts ORDER BY last_update_date DESC LIMIT 0, 5');
+        $req = $db->query('SELECT id, author_first_name, author_last_name, title, intro, content, DATE_FORMAT(last_update_date, \'%d/%m/%Y à %Hh%i\') AS last_modif_date_fr FROM post ORDER BY last_update_date DESC LIMIT 0, 5');
 
         return $req;
     }
@@ -40,7 +40,7 @@ class PostManager extends Manager
     public function getPostsRange($start, $limit)
     {
         $db = $this->dbConnect();
-        $req = $db->prepare('SELECT id, author_first_name, author_last_name, title, intro, content, DATE_FORMAT(last_update_date, \'%d/%m/%Y à %Hh%i\') AS last_modif_date_fr FROM posts ORDER BY last_update_date DESC LIMIT :start , :limit'); // ?, ?');
+        $req = $db->prepare('SELECT id, author_first_name, author_last_name, title, intro, content, DATE_FORMAT(last_update_date, \'%d/%m/%Y à %Hh%i\') AS last_modif_date_fr FROM post ORDER BY last_update_date DESC LIMIT :start , :limit'); // ?, ?');
         $req->bindParam(':start', $start, \PDO::PARAM_INT);
         $req->bindParam(':limit', $limit, \PDO::PARAM_INT);
         $req->execute();
@@ -53,7 +53,7 @@ class PostManager extends Manager
     public function getPost($postId)
     {
         $db = $this->dbConnect();
-        $req = $db->prepare('SELECT id, author_first_name, author_last_name, title, intro, content, DATE_FORMAT(last_update_date, \'%d/%m/%Y à %Hh%i\') AS last_modif_date_fr FROM posts WHERE id = ?');
+        $req = $db->prepare('SELECT id, author_first_name, author_last_name, title, intro, content, DATE_FORMAT(last_update_date, \'%d/%m/%Y à %Hh%i\') AS last_modif_date_fr FROM post WHERE id = ?');
         $req->execute(array($postId));
         $post = $req->fetch();
 
@@ -76,7 +76,7 @@ class PostManager extends Manager
         $purifier = new HTMLPurifier();
 
         $db = $this->dbConnect();
-        $posts = $db->prepare('INSERT INTO posts (author_first_name, author_last_name, title, intro, content, last_update_date) VALUES (?, ?, ?, ?, ?, NOW())');
+        $posts = $db->prepare('INSERT INTO post (author_first_name, author_last_name, title, intro, content, last_update_date) VALUES (?, ?, ?, ?, ?, NOW())');
         $affectedLines = $posts->execute(array($purifier->purify($author_first_name), $purifier->purify($author_last_name), $purifier->purify($title), $purifier->purify($intro), $purifier->purify($content)));
 
         if($affectedLines === true) {
@@ -94,7 +94,7 @@ class PostManager extends Manager
         $purifier = new HTMLPurifier();
 
         $db = $this->dbConnect();
-        $posts = $db->prepare('UPDATE posts SET author_first_name = ?, author_last_name = ?, title = ?, intro = ?, content = ?, last_update_date = NOW() WHERE id = ?');
+        $posts = $db->prepare('UPDATE post SET author_first_name = ?, author_last_name = ?, title = ?, intro = ?, content = ?, last_update_date = NOW() WHERE id = ?');
         $affectedLines = $posts->execute(array($purifier->purify($author_first_name), $purifier->purify($author_last_name), $purifier->purify($title),
             $purifier->purify($intro), $purifier->purify($content), $postId));
 
@@ -105,7 +105,7 @@ class PostManager extends Manager
     public function postDeletedPost($postId)
     {
         $db = $this->dbConnect();
-        $posts = $db->prepare('DELETE FROM posts WHERE id = ?');
+        $posts = $db->prepare('DELETE FROM post WHERE id = ?');
         $affectedLines = $posts->execute(array($postId));
 
         return $affectedLines;
