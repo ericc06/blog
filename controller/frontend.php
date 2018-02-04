@@ -68,6 +68,7 @@ function post()
     require('view/frontend/postView.php');
 }
 
+// Send the contact form email
 function sendContactForm($firstname, $lastname, $email, $message)
 {
     $result = false;
