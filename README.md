@@ -17,7 +17,7 @@ Create a database with the name you want, the manner you prefer (cPanel, command
 
 
 
-Execute the SQL installation script "blog.sql". For example (replace <db-name> with the name of the database you created):
+Execute the SQL installation script "blog.sql". For example (replace \<db-name> with the name of the database you created):
 
 
 ```
