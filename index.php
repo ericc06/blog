@@ -55,7 +55,10 @@ try {
             postModifyForm();
         }
         elseif ($_GET['action'] == 'postDel') {
-            deletePost($_GET['id']);
+            // Generating secret token to prevent CSRF attacks
+            $token = bin2hex(mcrypt_create_iv(32, MCRYPT_DEV_URANDOM));
+            $_SESSION['token'] = $token;
+            deletePost($token, $_GET['id']);
         }
         elseif ($_GET['action'] == 'front') {
             $_SESSION['admin'] = false;
@@ -64,19 +67,19 @@ try {
         elseif ($_GET['action'] == 'saveNewPost') {
             // TODO : vérifier le nombre de paramètre (explode)
             $nb_param = count($_MY_POST);
-            if($nb_param != 5) {
+            if($nb_param != 6) {
                 throw new Exception('Nombre de paramètres invalide.');
             }
-            saveNewPost($_MY_POST['title'], $_MY_POST['author_first_name'], $_MY_POST['author_last_name'], $_MY_POST['intro'], $_MY_POST['content']);
+            saveNewPost($_MY_POST['token'], $_MY_POST['title'], $_MY_POST['author_first_name'], $_MY_POST['author_last_name'], $_MY_POST['intro'], $_MY_POST['content']);
         }
         elseif ($_GET['action'] == 'saveModifiedPost') {
             // TODO : vérifier le nombre de paramètre (explode de l'URL pour l'URL rewriting)
             $nb_param = count($_MY_POST);
-            if($nb_param != 6) {
+            if($nb_param != 7) {
                 throw new Exception('Nombre de paramètres invalide.');
             }
             if (isset($_MY_POST['postId']) && $_MY_POST['postId'] > 0) {
-                saveModifiedPost($_MY_POST['postId'], $_MY_POST['title'], $_MY_POST['author_first_name'], $_MY_POST['author_last_name'], $_MY_POST['intro'], $_MY_POST['content']);
+                saveModifiedPost($_MY_POST['token'], $_MY_POST['postId'], $_MY_POST['title'], $_MY_POST['author_first_name'], $_MY_POST['author_last_name'], $_MY_POST['intro'], $_MY_POST['content']);
             }
             else {
                 throw new Exception('Aucun identifiant de billet envoyé.');

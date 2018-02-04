@@ -18,61 +18,107 @@ function postCreationForm()
 // Display the blog post modification form
 function postModifyForm()
 {
-    $postManager = new \EricCodron\Blog\Model\PostManager();
-    // TODO : vérifier que le paramètre est bien présent, sinon page 404
-    $post = $postManager->getPost($_GET['id']);
+    if (isset($_GET['id']) AND !empty($_GET['id'])) {
+        $postManager = new \EricCodron\Blog\Model\PostManager();
+        $post = $postManager->getPost($_GET['id']);
 
-    $homeMenuURL = 'index.php';
-    $blogMenuURL = 'index.php?action=listPosts';
-    $contactMenuURL = 'index.php#contact';
-    
-    require('view/backend/postModView.php');
+        $homeMenuURL = 'index.php';
+        $blogMenuURL = 'index.php?action=listPosts';
+        $contactMenuURL = 'index.php#contact';
+        
+        require('view/backend/postModView.php');
+    }
+    else {
+        showError404();
+    }
 }
 
 // Save the newly created blog post into the database or display an error message
-function saveNewPost($title, $author_first_name, $author_last_name, $intro, $content)
+function saveNewPost($token, $title, $author_first_name, $author_last_name, $intro, $content)
 {
-    $postManager = new \EricCodron\Blog\Model\PostManager();
+    // CSRF prevention: We check if all the expected tokens exist
+    if (isset($_SESSION['token']) AND isset($token) AND !empty($_SESSION['token']) AND !empty($token)) {
 
-    $lastId = $postManager->postNewPost($title, $author_first_name, $author_last_name, $intro, $content);
+        // We check that both tokens are the same
+        if ($_SESSION['token'] == $token) {
 
-    if ($lastId === false) {
-        throw new Exception('Impossible de créer le billet !');
+            $postManager = new \EricCodron\Blog\Model\PostManager();
+
+            $lastId = $postManager->postNewPost($title, $author_first_name, $author_last_name, $intro, $content);
+        
+            if ($lastId === false) {
+                throw new Exception('Impossible de créer le billet !');
+            }
+            else {
+                $SESSION['create_OK'] = true;
+                header('Location: index.php?action=post&id=' . $lastId);
+            }    
+        }
+        else {
+            throw new Exception('Impossible de créer le billet !');
+        }
     }
     else {
-        $SESSION['create_OK'] = true;
-        header('Location: index.php?action=post&id=' . $lastId);
-    }    
+        throw new Exception('Impossible de créer le billet !');
+    }
 }
 
 // Save the modified blog post into the database or display an error message
-function saveModifiedPost($postId, $title, $author_first_name, $author_last_name, $intro, $content)
+function saveModifiedPost($token, $postId, $title, $author_first_name, $author_last_name, $intro, $content)
 {
-    $postManager = new \EricCodron\Blog\Model\PostManager();
+    // CSRF prevention: We check if all the expected tokens exist
+    if (isset($_SESSION['token']) AND isset($token) AND !empty($_SESSION['token']) AND !empty($token)) {
 
-    $affectedLines = $postManager->postModifiedPost($postId, $title, $author_first_name, $author_last_name, $intro, $content);
+        // We check that both tokens are the same
+        if ($_SESSION['token'] == $token) {
 
-    if ($affectedLines === false) {
-        throw new Exception('Impossible de modifier le billet !');
+            $postManager = new \EricCodron\Blog\Model\PostManager();
+
+            $affectedLines = $postManager->postModifiedPost($postId, $title, $author_first_name, $author_last_name, $intro, $content);
+
+            if ($affectedLines === false) {
+                throw new Exception('Impossible de modifier le billet !');
+            }
+            else {
+                $SESSION['modif_OK'] = true;
+                header('Location: index.php?action=post&id=' . $postId);
+            }    
+        }
+        else {
+            throw new Exception('Impossible de modifier le billet !');
+        }
     }
     else {
-        $SESSION['modif_OK'] = true;
-        header('Location: index.php?action=post&id=' . $postId);
-    }    
+        throw new Exception('Impossible de modifier le billet !');
+    }
 }
 
 // Delete a blog post from the database or display an error message
-function deletePost($postId)
+function deletePost($token, $postId)
 {
-    $postManager = new \EricCodron\Blog\Model\PostManager();
+    // CSRF prevention: We check if all the expected tokens exist
+    if (isset($_SESSION['token']) AND isset($token) AND !empty($_SESSION['token']) AND !empty($token)) {
 
-    $affectedLines = $postManager->postDeletedPost($postId);
+        // We check that both tokens are the same
+        if ($_SESSION['token'] == $token) {
 
-    if ($affectedLines === false) {
-        throw new Exception('Impossible de supprimer le billet !');
+            $postManager = new \EricCodron\Blog\Model\PostManager();
+
+            $affectedLines = $postManager->postDeletedPost($postId);
+        
+            if ($affectedLines === false) {
+                throw new Exception('Impossible de supprimer le billet !');
+            }
+            else {
+                $SESSION['delete_OK'] = true;
+                header('Location: index.php?action=listPosts');
+            }    
+        }
+        else {
+            throw new Exception('Impossible de supprimer le billet !');
+        }
     }
     else {
-        $SESSION['delete_OK'] = true;
-        header('Location: index.php?action=listPosts');
-    }    
+        throw new Exception('Impossible de supprimer le billet !');
+    }
 }

@@ -4,6 +4,7 @@
 
         <div class="news">
             <form name="createPost" id="createPost" action="index.php?action=saveNewPost" method="post">
+                <input type="hidden" name="token" id="token" value="{{ token }}" />
                 <div class="control-group">
                     <div class="form-group floating-label-form-group controls mb-0 pb-2">
                         <label>Titre</label>

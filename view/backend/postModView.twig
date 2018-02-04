@@ -4,6 +4,7 @@
 
         <div class="news">
             <form name="modifPost" id="modifPost" action="index.php?action=saveModifiedPost" method="post">
+                <input type="hidden" name="token" id="token" value="{{ token }}" />
                 <input type="hidden" id="postId" name="postId" value="{{ post.id }}" />
                 <div class="control-group">
                     <div class="form-group floating-label-form-group controls mb-0 pb-2">
